@@ -24,7 +24,6 @@ namespace ManageBooks.Services
                 }
                 var json =   response.Content.ReadAsStringAsync();
                 List<Books> books = null;
-
                 books = JsonConvert.DeserializeObject<List<Books>>(json.Result);
 
                 return books;
