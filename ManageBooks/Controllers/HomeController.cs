@@ -1,5 +1,4 @@
-﻿using ManageBooks.data;
-using ManageBooks.Models;
+﻿using ManageBooks.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
