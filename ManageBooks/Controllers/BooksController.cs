@@ -1,6 +1,7 @@
 ﻿using ManageBooks.Models;
 using ManageBooks.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,24 +18,32 @@ namespace ManageBooks.Controllers
         }
         public IActionResult Index()
         {
-            List<Books> books = new List<Books>();
             var response = _booksService.GetBooksAsync();
-            foreach (var item in response)
-            {
-                books.Add(new Books
-                {
-                   isbn = item.isbn,
-                   editorials = item.editorials,
-                   tittle = item.tittle,
-                   synopsis = item.synopsis,
-                   n_pages = item.n_pages
-                });
-            }
-            return View(books);
+            return View(response);
         }
 
-        public async Task<IActionResult> Create(Books books)
+        public IActionResult Create()
         {
+            var listEditorials = _booksService.GetEditorialsBooks();
+            List<SelectListItem> editorials = listEditorials.ConvertAll(e =>
+            {
+                return new SelectListItem()
+                {
+                    Text = e.name.ToString(),
+                    Value = e.id.ToString(),
+                    Selected = false
+                };
+            });
+
+            ViewBag.editorials = editorials;
+
+            return View();
+        }
+
+        public async Task<IActionResult> CreateBooks(Books books)
+        {
+            string editorial = Request.Form["editorial"].ToString();
+            books.editorials = int.Parse(editorial);
             var result = await _booksService.CreateBooksAsync(books);
             return Ok(result);
         }

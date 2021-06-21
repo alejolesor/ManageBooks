@@ -26,6 +26,7 @@ namespace ManageBooks
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IBooksApiClient, BooksApiClient>();
+            services.AddSingleton<IEditorialsService, EditorialsService>();
             services.AddControllersWithViews();
         }
 

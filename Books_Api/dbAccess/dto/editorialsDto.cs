@@ -7,7 +7,7 @@ namespace Books_Api.dbAccess.dto
 {
     public class editorialsDto
     {
-        public int id { get; set; }
+        public int? id { get; set; }
         public string name { get; set; }
         public string campus { get; set; }
     }

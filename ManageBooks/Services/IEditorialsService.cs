@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace ManageBooks.Services
 {
-    public interface IBooksApiClient
+    public interface IEditorialsService
     {
-        List<Books> GetBooksAsync();
-        Task<bool> CreateBooksAsync(Books book);
+        List<Editorials> GetEditorials();
 
-        List<Editorials> GetEditorialsBooks();
+        Task<bool> CreateEditorials(Editorials editorials);
     }
 }

@@ -11,6 +11,7 @@ namespace ManageBooks.Services
     public class restClient
     {
         string urlApi = "https://localhost:44330/api/Books";
+        string endPointEditorials = "https://localhost:44330/api/Editorials";
         public HttpResponseMessage GetBooks()
         {
             var endpoint = urlApi;
@@ -23,6 +24,24 @@ namespace ManageBooks.Services
         public HttpResponseMessage CreateBook(Books value)
         {
             var endpoint = urlApi;
+            var client = new HttpClient();
+            var response = client.PostAsJsonAsync(endpoint, value).Result;
+            client.Dispose();
+            return response;
+        }
+
+        public HttpResponseMessage GetEditorials()
+        {
+            var endpoint = endPointEditorials;
+            var client = new HttpClient();
+            HttpResponseMessage response = client.GetAsync(endpoint).Result;
+            client.Dispose();
+            return response;
+        }
+
+        public HttpResponseMessage CreateEditorial(Editorials value)
+        {
+            var endpoint = endPointEditorials;
             var client = new HttpClient();
             var response = client.PostAsJsonAsync(endpoint, value).Result;
             client.Dispose();

@@ -8,7 +8,7 @@
 <h1>Books</h1>
 
 <p>
-    <a asp-action="Create">Create New Book</a>
+    <a class="btn btn-primary" asp-action="Create">Create New Book</a>
 </p>
 <table class="table table-striped">
     <thead>
@@ -50,9 +50,8 @@
                 @Html.DisplayFor(modelItem => item.n_pages)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                <a asp-controller="Books" asp-action="Edit" asp-route-id="@item.isbn" class="btn btn-warning">Editar</a>
+                <a asp-controller="Books" asp-action="" asp-route-id="@item.isbn" class="btn btn-danger">Eliminar</a>
             </td>
         </tr>
 }
